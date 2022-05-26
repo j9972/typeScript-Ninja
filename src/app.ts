@@ -1,5 +1,32 @@
-//classes
+//interface
+interface IsPerson {
+    name: string;
+    age: number;
+    speak(a: string): void;
+    spend(a:number): number;
+}
 
+// interface에[ 없는 속성을 넣으면 에러가 난다.]
+const me : IsPerson = {
+    name: 'shaun',
+    age: 30,
+    speak(text: string): void{
+        console.log(text);
+    },
+    spend(amount: number) : number {
+        console.log('I spend', amount);
+        return amount;
+    }
+};
+
+const greetPerson = (person: IsPerson) => {
+    console.log('hello', person.name);
+    
+}
+
+greetPerson(me)
+
+//classes
 import {Invoice} from './classes/Invoice.js'
 
 const invOne = new Invoice('mario', 'work on the mario web', 250);
