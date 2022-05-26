@@ -1,32 +1,38 @@
+//explicit types -> 타입을 정했기때문에 다른 타입은 무시된다.
+let character : string;
+let age : number;
+let check : boolean;
+
 // array
-let names = ['c', 'a','r', 'R','o', 't']
+let ninjas: string[]; // empty array에 push는 error
+// let ninjas: string[] = [];  이렇게 하면 위의 에러 해결
 
-names.push('thoad');
+// ninjas.push('shau') 가능
 
+ninjas = ['yo', 'si']
 
-let nums = [10,20,30,40]
+// union types
+// ex - array
+let mixed : (string|number|boolean)[] = [];
+mixed.push('hello');
+mixed.push(20);
+mixed.push(false);
 
-nums.push(25);
+// ex - normal var
+let uid : string|number|boolean;
+uid = '123';
+uid = 123;
+uid = false;
 
-let mixed = ['ken',2,'chun', 3, 5];
+// objects -> 2가지 ways
+let ninjaOne : object;
+ninjaOne = { name: 'yoshi', age: 24};
 
-mixed.push('ryt');
-mixed.push(10);
-
-// object
-let ninja = {
-    name : 'mario',
-    belt : 'black',
-    age: 24
+// 다른 방법이지만, new property를 넣으면 에러남
+let ninjaTwo : {
+    name: string,
+    age: number,
+    beltColor: string
 }
 
-ninja.age = 40;
-ninja.name = 'gyu';
-//ninja.skills = ['fighting','sleeping'] -> 없는 property라서 안됨
-
-ninja = {
-    name : 'mario',
-    belt : 'black',
-    age: 24,
-    // skills: [] 이렇게 쓰는거 안됨 
-}
+ninjaTwo = { name: 'mario', age: 23, beltColor: 'black'}
