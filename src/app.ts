@@ -2,16 +2,16 @@
 
 // class는 초기값 세팅안하면 에러가 난다
 class Invoice {
-    client: string;
-    details: string;
-    amount: number;
+    //readonly client: string;
+    //private details: string;
+    //public amount: number; 
     
      // 초기값 세팅하려고 함/
-    constructor(c: string, d: string, a: number) {
-        this.client = c;
-        this.details = d;
-        this.amount = a;
-    }
+    constructor(
+        readonly client: string,
+        private details: string,
+        public amount: number,
+    ) {}
 
     format() {
         return `${this.client} owes ${this.amount} for ${this.details}`
@@ -26,9 +26,10 @@ invoices.push(invOne);
 invoices.push(invTwo);
 console.log(invoices);
 
-invOne.client = 'yoshi';
-invTwo.amount = 120;
-
+invoices.forEach(inv => {
+    console.log(inv.client, inv.amount, inv.format());
+    
+})
 
 
 // 표현을 이렇게도 할 수 있음 - Form
