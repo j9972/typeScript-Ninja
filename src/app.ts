@@ -1,22 +1,6 @@
 //classes
 
-// class는 초기값 세팅안하면 에러가 난다
-class Invoice {
-    //readonly client: string;
-    //private details: string;
-    //public amount: number; 
-    
-     // 초기값 세팅하려고 함/
-    constructor(
-        readonly client: string,
-        private details: string,
-        public amount: number,
-    ) {}
-
-    format() {
-        return `${this.client} owes ${this.amount} for ${this.details}`
-    }
-}
+import {Invoice} from './classes/Invoice.js'
 
 const invOne = new Invoice('mario', 'work on the mario web', 250);
 const invTwo = new Invoice('luo', 'work on the luo web', 230);
@@ -27,8 +11,7 @@ invoices.push(invTwo);
 console.log(invoices);
 
 invoices.forEach(inv => {
-    console.log(inv.client, inv.amount, inv.format());
-    
+    console.log(inv.client, inv.amount, inv.format());  
 })
 
 
