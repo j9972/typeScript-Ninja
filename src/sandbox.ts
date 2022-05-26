@@ -1,22 +1,31 @@
-// way1)
+let greet: Function;
 
-const logDetails = (uid: string|number, item:string) => {
-    console.log(`${item} has a uid of ${uid}`);
+// ex1 -> func signature
+let gree: (a:string, b:string) => void;
+// a,b -> x,y가 되어도 상관이 없다. 대신에 type은 맞아야 한다
+
+gree = (name: string, greeting:string) => {
+    console.log(`${name} say ${greeting}`);
 }
 
-// parameter로 객체가 들어올 수 있다.
-const greet = (user: {name: string, uid: string|number}) => {
-    console.log(`${user.name}say hello`);
+// ex2
+let calc : (a:number,b:number,c:string) => number;
+
+calc = (numOne: number, numTwo: number, action: string) => {
+    if(action === 'add') {
+        return numOne + numTwo;
+    } else { // else문이 없으면 에러가 날것이다
+        return numOne - numTwo
+    }
 }
 
-// way2)
-type StringOrNum = string | number
-type objWithName = {name:string, uid: StringOrNum}
+// ex3
+let logDetails : (obj: {name : string, age:number}) => void;
 
-const logDetailsB = (uid: StringOrNum, item:string) => {
-    console.log(`${item} has a uid of ${uid}`);
+type person = {name:string, age:number}
+
+logDetails = (ninja: person) => {
+    console.log(`${ninja.name} is ${ninja.age} years old`);
+    
 }
 
-const greetB = (user: objWithName) => {
-    console.log(`${user.name}say hello`);
-}
