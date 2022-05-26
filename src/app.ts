@@ -1,14 +1,34 @@
-const anchor = document.querySelector('a');
+//classes
 
-// console.log(anchor.href); -> 이러면 에러
-// 에러 해결 방법 1
-if(anchor) {
-    console.log(anchor.href);
+// class는 초기값 세팅안하면 에러가 난다
+class Invoice {
+    client: string;
+    details: string;
+    amount: number;
+    
+     // 초기값 세팅하려고 함/
+    constructor(c: string, d: string, a: number) {
+        this.client = c;
+        this.details = d;
+        this.amount = a;
+    }
+
+    format() {
+        return `${this.client} owes ${this.amount} for ${this.details}`
+    }
 }
 
-// 에러 해결 방법 2
-const anchor2 = document.querySelector('a')!;
-console.log(anchor2.href);
+const invOne = new Invoice('mario', 'work on the mario web', 250);
+const invTwo = new Invoice('luo', 'work on the luo web', 230);
+
+let invoices: Invoice[] = []; // array
+invoices.push(invOne);
+invoices.push(invTwo);
+console.log(invoices);
+
+invOne.client = 'yoshi';
+invTwo.amount = 120;
+
 
 
 // 표현을 이렇게도 할 수 있음 - Form
@@ -21,7 +41,7 @@ const toform = document.querySelector('#toform') as HTMLInputElement;
 const details = document.querySelector('#details') as HTMLInputElement;
 const amount = document.querySelector('#amount') as HTMLInputElement;
 
-form.addEventListener('submit', (e:Event) => {
+form.addEventListener('submit', (e: Event) => {
     e.preventDefault();
     console.log(
         type.value,
