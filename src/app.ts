@@ -38,3 +38,43 @@ form.addEventListener('submit', (e: Event) => {
   
   list.render(doc, type.value, 'end');
 });
+
+
+// Generics
+
+
+const addUID = <T extends {name: string}>(obj:T) => {
+  let uid = Math.floor(Math.random() * 100);
+  return {...obj, uid};
+}
+
+let docOne = addUID({name: 'jung', age:24});
+// let docTwo = addUID('hello');
+console.log(docOne.name);
+
+
+// with interface
+interface Resource<T> { // data 부분은 generics
+  uid: number;
+  resourceName:string;
+  // data 부분은 string, number 등 다양한게 올 수 있으니까 -> generic
+  data: T;
+}
+
+const docThree : Resource <string> = {
+  uid: 1,
+  resourceName: 'Person',
+  data: 'shaun'
+}
+
+const docThree_2 : Resource <object> = {
+  uid: 1,
+  resourceName: 'Person',
+  data: {name: 'shaun'}
+}
+
+const docFour : Resource<string[]> = {
+  uid: 2,
+  resourceName: 'shoppingList',
+  data: ['breed', 'millk']
+}
