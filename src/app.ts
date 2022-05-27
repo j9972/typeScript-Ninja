@@ -29,34 +29,27 @@ const list = new ListTemplate(ul);
 form.addEventListener('submit', (e: Event) => {
   e.preventDefault();
 
+  let values : [string, string, number];
+  values = [tofrom.value,details.value,amount.valueAsNumber]
+
+
   let doc: HasFormatter;
   if (type.value === 'invoice') {
-    doc = new Invoice(tofrom.value, details.value, amount.valueAsNumber);
+    doc = new Invoice(...values);
   } else {
-    doc = new Payment(tofrom.value, details.value, amount.valueAsNumber);
+    doc = new Payment(...values);
   }
   
   list.render(doc, type.value, 'end');
 });
 
-// Enums
-enum ResourceType { BOOK, AUTHOR, FILM, DIRECTOR ,PERSON}
-// 순서들이 number로 0부터 시작해서 값이 생성되어서 number type 가능
-interface Resource<T> { // data 부분은 generics
-  uid: number;
-  resourceType:number;
-  // data 부분은 string, number 등 다양한게 올 수 있으니까 -> generic
-  data: T;
-}
+// Tuple
+let arr = ['tyu', 25, true];
+arr[0] = false // 가능
 
-const docOne : Resource <object> = {
-  uid: 1,
-  resourceType: ResourceType.BOOK,
-  data: {name: 'shaun'}
-}
+let tup: [string, number,boolean] = ['hi',40,true]
+//tup[0] = false // 불가능
 
-const docTwo : Resource <object> = {
-  uid: 11,
-  resourceType: ResourceType.PERSON,
-  data: {title: 'wind'}
-}
+let student : [string, number]; // string, number 순서의 타입 지키기
+// student = [232, 'lasda'] 불가능
+student = ['lili', 2323 ];
